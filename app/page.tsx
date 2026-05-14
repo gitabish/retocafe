@@ -101,6 +101,13 @@ export default function Home() {
   const xTransform = useTransform(scrollYProgress, [0, 1], [0, -500]);
   const rotateTransform = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
+  React.useEffect(() => {
+    if (window.history.scrollRestoration) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   const MENU_SECTIONS = [
     {
       title: "MORNING START",
@@ -195,8 +202,11 @@ export default function Home() {
       <Navbar />
 
       {/* --- HERO SECTION --- */}
-      <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-4 md:pt-8 pb-20 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-20 overflow-hidden">
         <motion.div 
+          initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
+          animate={{ opacity: 0.1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           style={{ rotate: rotateTransform }}
           className="absolute top-1/4 left-10 opacity-10 pointer-events-none"
         >
@@ -205,9 +215,9 @@ export default function Home() {
 
         <div className="container mx-auto px-6 z-10 text-center relative">
           <motion.h1 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ y: 100, opacity: 0, skewY: 5 }}
+            animate={{ y: 0, opacity: 1, skewY: 0 }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
             className="kinetic-text text-7xl md:text-[12rem] tracking-tighter text-[#1a1a1a] leading-[0.8]"
           >
             <span className="block italic text-[#ff5c00] mb-[-0.1em] md:mb-[-0.2em]">YOUR</span>
@@ -228,8 +238,8 @@ export default function Home() {
             transition={{ delay: 0.5 }}
             className="font-mono text-lg md:text-2xl mt-8 flex flex-col items-center gap-4"
           >
-            <div className="uppercase tracking-widest bg-[#1a1a1a] text-[#fdfcf5] px-6 py-2 inline-block -rotate-1 font-bold">
-              Vintage Coffee • Vinyl Soul • Warm Vibe
+            <div className="uppercase tracking-widest bg-[#1a1a1a] text-[#fdfcf5] px-6 py-3 inline-block -rotate-1 font-bold text-center relative z-10 leading-snug">
+              VINTAGE COFFEE • VINYL <br /> SOUL • WARM VIBE
             </div>
             <p className="font-display font-black text-xl italic text-[#9e2a2b]">Good morning Boppers!</p>
           </motion.div>
@@ -251,36 +261,48 @@ export default function Home() {
 
         {/* Collage Elements */}
         <FloatingDecoration className="bottom-20 left-[10%] hidden lg:block" delay={0.5}>
-          <div className="relative group hover:scale-110 transition-transform cursor-pointer">
+          <motion.div 
+            initial={{ opacity: 0, x: -50, rotate: -15 }}
+            animate={{ opacity: 1, x: 0, rotate: -3 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="relative group hover:scale-110 transition-transform cursor-pointer"
+          >
             <div className="bg-[#ff5c00] w-48 h-48 rounded-full blur-3xl opacity-20 absolute -z-10" />
-            <div className="p-4 bg-white brutalist-border -rotate-3 overflow-hidden">
+            <div className="p-4 bg-white brutalist-border overflow-hidden">
                 <Image 
                   src="/remedy.jpg" 
                   alt="Latte" 
                   width={200} 
                   height={200} 
+                  priority
                   className="hover:grayscale-0 transition-all duration-500"
                   referrerPolicy="no-referrer"
                 />
                 <div className="mt-2 font-mono text-[10px] text-black">BATCH #042 // ETHIOPIAN HEIRLOOM</div>
             </div>
-          </div>
+          </motion.div>
         </FloatingDecoration>
 
         <FloatingDecoration className="top-[20%] right-[10%] hidden lg:block" delay={1}>
-          <div className="relative group hover:scale-110 transition-transform">
+          <motion.div 
+            initial={{ opacity: 0, x: 50, rotate: 15 }}
+            animate={{ opacity: 1, x: 0, rotate: 12 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="relative group hover:scale-110 transition-transform"
+          >
             <div className="bg-[#9e2a2b] w-48 h-48 rounded-full blur-3xl opacity-20 absolute -z-10" />
-            <div className="p-4 bg-[#fdfcf5] brutalist-border-red rotate-12 overflow-hidden">
+            <div className="p-4 bg-[#fdfcf5] brutalist-border-red overflow-hidden">
                 <Image 
                   src="/coffeeicon.jpg" 
                   alt="Coffee" 
                   width={250} 
                   height={250} 
+                  priority
                   className="opacity-90 contrast-110 group-hover:opacity-100 transition-all"
                   referrerPolicy="no-referrer"
                 />
             </div>
-          </div>
+          </motion.div>
         </FloatingDecoration>
       </section>
 
@@ -299,7 +321,13 @@ export default function Home() {
       <section id="menu" className="py-24 md:py-32 bg-[#fdfcf5] relative overflow-hidden border-y-8 border-[#1a1a1a]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-20 gap-12 text-center md:text-left">
-            <div className="relative w-full md:w-auto">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative w-full md:w-auto"
+            >
               <h2 className="kinetic-text text-6xl md:text-[10rem] text-[#1a1a1a] leading-none mb-4">
                 THE <br /> <span className="text-[#ff5c00]">FULL</span> <br /> MENU.
               </h2>
@@ -320,9 +348,15 @@ export default function Home() {
                   DOWNLOAD PDF <Star className="w-5 h-5 text-[#ff5c00] fill-[#ff5c00]" />
                 </motion.a>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="w-full md:w-1/3 p-10 bg-[#1a1a1a] text-white neo-brutal-border rotate-2 relative shadow-warm">
+            <motion.div 
+              initial={{ opacity: 0, x: 50, rotate: 5 }}
+              whileInView={{ opacity: 1, x: 0, rotate: 2 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="w-full md:w-1/3 p-10 bg-[#1a1a1a] text-white neo-brutal-border relative shadow-warm"
+            >
               <div className="absolute -top-6 -right-4 bg-[#ff5c00] text-white sticker rotate-12 kinetic-text px-4 py-2 text-sm">ADD ONS</div>
               <p className="font-mono text-xs uppercase font-black mb-6 flex items-center justify-center md:justify-start gap-2 text-[#f4a261]">
                 {/* lucide-react zap */}
@@ -333,7 +367,7 @@ export default function Home() {
                 <div className="flex justify-between border-b border-zinc-700 pb-2"><span>Extra Shot / Syrup</span><span>+$1.0</span></div>
                 <div className="flex justify-between border-b border-zinc-700 pb-2"><span>Add Cream / Ice Cream</span><span>+$1.0</span></div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-24">
@@ -385,7 +419,13 @@ export default function Home() {
 
       {/* --- BENTO MENU (Highlights) --- */}
       <section className="py-24 md:py-32 px-6 container mx-auto relative text-center md:text-left">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8"
+        >
           <h2 className="kinetic-text text-6xl md:text-8xl text-[#1a1a1a]">
             THE <span className="text-[#9e2a2b]">FUEL</span> <br className="hidden md:block" /> 
             STATION.
@@ -393,31 +433,35 @@ export default function Home() {
           <p className="font-mono text-sm max-w-xs text-[#2b2d42] uppercase font-black">
             Curated brews and vintage eats for the creative soul. Handmade, small batch, pure heart.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-none md:grid-rows-3 gap-6 h-auto md:h-[800px]">
           {/* Big Item */}
           <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
             whileHover={{ scale: 0.98 }}
             className="md:col-span-2 md:row-span-2 bg-[#1a1a1a] rounded-3xl neo-brutal-border p-8 flex flex-col justify-between group overflow-hidden relative shadow-warm"
           >
             <div className="absolute top-0 right-0 p-8 scale-0 group-hover:scale-150 transition-transform opacity-10 blur-xl bg-[#ff5c00] w-64 h-64 rounded-full" />
-            <div className="relative z-10">
-              <span className="font-mono text-[#f4a261] text-xs font-black">#01 // ARTISAN</span>
-              <h3 className="kinetic-text text-5xl mt-4 text-white text-center">TERRACOTTA LATTE</h3>
-              <p className="font-mono text-zinc-400 mt-2 max-w-xs mx-auto uppercase font-bold text-center">Smoked cinnamon, maple, and double shot espresso. Pure comfort.</p>
+            <div className="relative z-10 flex flex-col items-center text-center">
+              <span className="font-mono text-[#f4a261] text-xs font-black self-center">#01 // ARTISAN</span>
+              <h3 className="kinetic-text text-5xl mt-4 text-white text-center w-full -ml-[22px]">TERRACOTTA LATTE</h3>
+              <p className="font-mono text-zinc-400 mt-2 max-w-xs uppercase font-bold text-center">Smoked cinnamon, maple, and double shot espresso. Pure comfort.</p>
             </div>
             <div className="relative mt-auto pt-8 group-hover:-translate-y-4 transition-transform duration-500 overflow-hidden rounded-3xl">
                <Image 
                   src="/terracotta_artisan_latte.webp" 
-                  alt="Terracotta Latte" 
+                  alt="Terracotta    Latte" 
                   width={600} 
                   height={400} 
                   className="rounded-3xl brutalist-border w-full h-full object-cover aspect-[3/2] sepia-[0.2]"
                   referrerPolicy="no-referrer"
                />
-               <div className="absolute -bottom-4 -right-4 bg-[#ff5c00] text-white px-4 py-2 kinetic-text text-2xl rotate-6 neo-brutal-border">
-                 $6.50
+               <div className="absolute bottom-6 right-6 bg-[#ff5c00] text-white px-6 py-3 kinetic-text text-3xl rotate-6 neo-brutal-border z-20 shadow-2xl">
+                  $6.50
                </div>
             </div>
           </motion.div>
@@ -490,7 +534,13 @@ export default function Home() {
       {/* --- STORY SECTION --- */}
       <section id="story" className="py-32 bg-[#1a1a1a] text-[#fdfcf5] relative overflow-hidden">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
-            <div className="relative order-2 md:order-1">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative order-2 md:order-1"
+            >
               <motion.div 
                 animate={{ rotate: [-2, 2, -2] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
@@ -512,9 +562,15 @@ export default function Home() {
               <FloatingDecoration className="-bottom-10 -left-10" delay={2}>
                  <Heart className="w-20 h-20 text-[#e07a5f] opacity-50" />
               </FloatingDecoration>
-            </div>
+            </motion.div>
 
-            <div className="order-1 md:order-2">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="order-1 md:order-2"
+            >
                <span className="font-mono text-[#f4a261] text-sm font-bold uppercase tracking-[0.5em]">THE LEGACY</span>
                <h2 className="kinetic-text text-7xl mt-4 leading-none text-white">
                  THE ART OF THE <br /> 
@@ -535,20 +591,28 @@ export default function Home() {
                     <div className="font-mono text-[10px] text-zinc-500 uppercase font-black tracking-widest mt-2">HAPPY CUSTOMERS</div>
                   </div>
                </motion.div>
-            </div>
+            </motion.div>
         </div>
       </section>
 
       {/* --- VIBE SECTION --- */}
       <section id="vibe" className="py-20 bg-[#9e2a2b] border-y-8 border-[#1a1a1a] relative">
          <div className="container mx-auto px-6 text-center">
-            <h2 className="kinetic-text text-8xl md:text-[10rem] text-white opacity-10 absolute -top-10 left-0 w-full whitespace-nowrap overflow-hidden pointer-events-none">
+            <motion.h2 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 0.1 }}
+              className="kinetic-text text-8xl md:text-[10rem] text-white absolute -top-10 left-0 w-full whitespace-nowrap overflow-hidden pointer-events-none"
+            >
               JAZZ • ROAST • FLOW • JAZZ • ROAST • FLOW
-            </h2>
+            </motion.h2>
             <div className="relative z-10 pt-20">
                <motion.div 
+                 initial={{ opacity: 0, y: 50, rotate: 10 }}
+                 whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+                 transition={{ duration: 0.6 }}
+                 viewport={{ once: true }}
                  whileHover={{ y: -5 }}
-                 className="inline-block bg-[#fdfcf5] text-[#1a1a1a] p-8 neo-brutal-border rotate-2 mb-12 shadow-warm"
+                 className="inline-block bg-[#fdfcf5] text-[#1a1a1a] p-8 neo-brutal-border mb-12 shadow-warm"
                >
                   <Music className="w-16 h-16 mx-auto mb-4 text-[#ff5c00]" />
                   <h3 className="kinetic-text text-4xl">SOUL CHECK</h3>
@@ -577,11 +641,17 @@ export default function Home() {
 
       {/* --- TESTIMONIALS --- */}
       <section id="cult" className="py-32 px-6 container mx-auto">
-        <div className="text-center mb-20">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
            <h2 className="kinetic-text text-6xl md:text-9xl text-[#1a1a1a]">
              THE <span className="bg-[#ff5c00] text-white px-4 -rotate-2 inline-block">CULT.</span>
            </h2>
-        </div>
+        </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
               { 
@@ -611,6 +681,10 @@ export default function Home() {
             ].map((t, i) => (
               <motion.div 
                 key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
                 whileHover={{ rotate: i % 2 === 0 ? 1 : -1, y: -10 }}
                 className="bg-[#1a1a1a] p-8 brutalist-border relative shadow-warm flex flex-col justify-between"
                 style={{ borderColor: t.color.split('[')[1].split(']')[0] }}
@@ -652,7 +726,13 @@ export default function Home() {
       {/* --- FOOTER --- */}
       <footer className="bg-[#1a1a1a] text-[#fdfcf5] py-20 mt-20 relative overflow-hidden border-t-8 border-[#ff5c00]">
         <div className="absolute top-0 right-0 p-20 opacity-10 blur-3xl bg-[#ff5c00] w-1/3 h-full rounded-full -z-10" />
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-12"
+        >
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
                <h3 id="footer-logo" className="kinetic-text text-6xl md:text-7xl italic text-[#ff5c00]">REMEDY.CO</h3>
                <p className="font-mono mt-8 text-lg max-w-md uppercase tracking-tight font-black text-zinc-400">
@@ -740,7 +820,7 @@ export default function Home() {
                   ))}
                </div>
             </div>
-        </div>
+        </motion.div>
         
         <div className="container mx-auto px-6 mt-20 pt-12 border-t-2 border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-mono uppercase font-bold text-zinc-500 text-center">
            <span>© 2024 REMEDY COFFEE COLLECTIVE</span>

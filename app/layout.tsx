@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Archivo_Black, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const kinetic = Archivo_Black({
   weight: '400',
@@ -19,15 +20,26 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Remedy Coffee | Sip. Play. Vibe.',
+  title: 'retocafe | Sip. Play. Vibe.',
   description: 'Neo-Brutalist Cafe & Gaming Hangout',
+  icons: {
+    icon: '/coffeeicon.jpg',
+    apple: '/coffeeicon.jpg',
+  },
+  openGraph: {
+    title: 'retocafe | Sip. Play. Vibe.',
+    description: 'Neo-Brutalist Cafe & Gaming Hangout',
+    images: ['/remedy.jpg'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${kinetic.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
       <body suppressHydrationWarning className="bg-[#fdfcf5] text-[#1a1a1a] selection:bg-[#ff5c00] selection:text-white antialiased overflow-x-hidden">
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
