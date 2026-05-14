@@ -257,9 +257,8 @@ export default function Home() {
         <div className="container mx-auto px-6 z-10 text-center relative">
           <motion.h1 
             initial={{ y: 100, opacity: 0, skewY: 5 }}
-            whileInView={{ y: 0, opacity: 1, skewY: 0 }}
-            transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
-            viewport={{ once: false, amount: 0.1 }}
+            animate={{ y: 0, opacity: 1, skewY: 0 }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
             className="kinetic-text text-7xl md:text-[12rem] tracking-tighter text-[#1a1a1a] leading-[0.8]"
           >
             <span className="block italic text-[#ff5c00] mb-[-0.1em] md:mb-[-0.2em]">YOUR</span>
@@ -276,9 +275,8 @@ export default function Home() {
 
           <motion.div 
             initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            viewport={{ once: false, amount: 0.1 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
             className="font-mono text-lg md:text-2xl mt-8 flex flex-col items-center gap-4"
           >
             <div className="uppercase tracking-widest bg-[#1a1a1a] text-[#fdfcf5] px-6 py-3 inline-block -rotate-1 font-bold text-center relative z-10 leading-snug">
@@ -367,8 +365,8 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
               className="relative w-full md:w-auto"
             >
               <h2 className="kinetic-text text-6xl md:text-[10rem] text-[#1a1a1a] leading-none mb-4">
@@ -396,8 +394,8 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, x: 50, rotate: 5 }}
               whileInView={{ opacity: 1, x: 0, rotate: 2 }}
-              transition={{ duration: 0.9 }}
-              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
               className="w-full md:w-1/3 p-10 bg-[#1a1a1a] text-white neo-brutal-border relative shadow-warm"
             >
               <div className="absolute -top-6 -right-4 bg-[#ff5c00] text-white sticker rotate-12 kinetic-text px-4 py-2 text-sm">ADD ONS</div>
@@ -417,10 +415,10 @@ export default function Home() {
             {MENU_SECTIONS.map((section, idx) => (
               <motion.div 
                 key={section.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.05, duration: 0.8 }}
-                viewport={{ once: false, amount: 0.1 }}
+                transition={{ delay: idx * 0.05 }}
+                viewport={{ once: true }}
                 className="flex flex-col"
               >
                 <div className="mb-10 relative self-center md:self-start">
@@ -465,9 +463,9 @@ export default function Home() {
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: false, amount: 0.2 }}
-          className="flex flex-col md:row justify-between items-center md:items-end mb-16 gap-8"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8"
         >
           <h2 className="kinetic-text text-6xl md:text-8xl text-[#1a1a1a]">
             THE <span className="text-[#9e2a2b]">FUEL</span> <br className="hidden md:block" /> 
@@ -483,8 +481,8 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
             whileHover={{ scale: 0.98 }}
             className="md:col-span-2 md:row-span-2 bg-[#1a1a1a] rounded-3xl neo-brutal-border p-8 flex flex-col justify-between group overflow-hidden relative shadow-warm"
           >
@@ -580,8 +578,8 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.2 }}
-              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
               className="relative order-2 md:order-1"
             >
               <motion.div 
@@ -610,8 +608,8 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.2 }}
-              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
               className="order-1 md:order-2"
             >
                <span className="font-mono text-[#f4a261] text-sm font-bold uppercase tracking-[0.5em]">THE LEGACY</span>
@@ -652,8 +650,8 @@ export default function Home() {
                <motion.div 
                  initial={{ opacity: 0, y: 50, rotate: 10 }}
                  whileInView={{ opacity: 1, y: 0, rotate: 2 }}
-                 transition={{ duration: 1 }}
-                 viewport={{ once: false, amount: 0.2 }}
+                 transition={{ duration: 0.6 }}
+                 viewport={{ once: true }}
                  whileHover={{ y: -5 }}
                  className="inline-block bg-[#fdfcf5] text-[#1a1a1a] p-8 neo-brutal-border mb-12 shadow-warm"
                >
@@ -687,8 +685,8 @@ export default function Home() {
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
           className="text-center mb-20"
         >
            <h2 className="kinetic-text text-6xl md:text-9xl text-[#1a1a1a]">
@@ -726,8 +724,8 @@ export default function Home() {
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                viewport={{ once: false, amount: 0.1 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
                 whileHover={{ rotate: i % 2 === 0 ? 1 : -1, y: -10 }}
                 className="bg-[#1a1a1a] p-8 brutalist-border relative shadow-warm flex flex-col justify-between"
                 style={{ borderColor: t.color.split('[')[1].split(']')[0] }}
@@ -750,8 +748,6 @@ export default function Home() {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: false, amount: 0.1 }}
           className="relative rounded-3xl overflow-hidden brutalist-border shadow-warm"
         >
           <Image 
@@ -774,8 +770,8 @@ export default function Home() {
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
-          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-12"
         >
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
