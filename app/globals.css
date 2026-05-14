@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --font-kinetic: var(--font-kinetic);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-marquee: marquee 20s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  :root {
+    --cafe-cream: #fdfcf5;
+    --cafe-orange: #ff5c00;
+    --cafe-red: #9e2a2b;
+    --cafe-terracotta: #e07a5f;
+    --cafe-espresso: #1a1a1a;
+    --cafe-peach: #f4a261;
+    --cafe-charcoal: #2b2d42;
+  }
+}
+
+@layer utilities {
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .shadow-warm {
+    box-shadow: 10px 10px 0px 0px rgba(26, 26, 26, 0.1);
+  }
+
+  .neo-brutal-border {
+    border: 3px solid #1a1a1a;
+    box-shadow: 5px 5px 0px #1a1a1a;
+  }
+
+  .brutalist-border {
+    border: 3px solid #1a1a1a;
+    box-shadow: 6px 6px 0px 0px #1a1a1a;
+  }
+
+  .brutalist-border-orange {
+    border: 3px solid var(--cafe-orange);
+    box-shadow: 6px 6px 0px 0px var(--cafe-orange);
+  }
+
+  .brutalist-border-red {
+    border: 3px solid var(--cafe-red);
+    box-shadow: 6px 6px 0px 0px var(--cafe-red);
+  }
+
+  .kinetic-text {
+    font-family: var(--font-kinetic), sans-serif;
+    text-transform: uppercase;
+    line-height: 0.85;
+  }
+
+  .scrapbook-rotate-1 { transform: rotate(-1.5deg); }
+  .scrapbook-rotate-2 { transform: rotate(2deg); }
+
+  .sticker {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 3px solid #1a1a1a;
+    z-index: 50;
+    box-shadow: 3px 3px 0px #1a1a1a;
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1.5px #1a1a1a;
+    color: transparent;
+  }
+}
+
+body {
+  cursor: crosshair;
+}
+
+/* Custom scrollbar for brutalist feel */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdfcf5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border: 2px solid #fdfcf5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5c00;
+}
